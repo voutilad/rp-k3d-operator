@@ -9,7 +9,7 @@ PASSPHRASE="$(./passphrase/generate.sh | tr -d '\n')"
 
 if ! kubectl get secret redpanda-admin-password -n "${RP_NAMESPACE}" > /dev/null 2>&1; then
     kubectl create secret generic redpanda-admin-password -n "${RP_NAMESPACE}" \
-        --from-literal-password="${PASSPHRASE}"
+        --from-literal=password="${PASSPHRASE}"
     echo ">> Created redpanda-admin-password secret"
 fi
 
