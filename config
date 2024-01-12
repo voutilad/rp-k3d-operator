@@ -1,0 +1,18 @@
+#!/bin/sh
+##
+## Set your k8s namespace here if you want to change it
+## NOTE: if you change this, you need to update 
+##       topic.yaml's spec.kafkaApiSpec.brokers
+
+RP_NAMESPACE="rp"
+
+# determine the host architecture for picking the correct RPK binary
+if [ x`uname -m` = "xaarch64" ]; then
+    ARCH=arm64
+else
+    ARCH=amd64
+fi
+
+AGENTS="${AGENTS:-3}"
+SERVERS="${SERVERS:-1}"
+MEM="${MEM:-4G}"

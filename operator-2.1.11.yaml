@@ -1,0 +1,29 @@
+---
+replicaCount: 3
+clusterDomain: cluster.local
+
+image:
+  repository: docker.redpanda.com/redpandadata/redpanda-operator
+  tag: v2.1.11-23.3.1
+  pullPolicy: Always
+
+kubeRbacProxy:
+  image:
+    repository: gcr.io/kubebuilder/kube-rbac-proxy
+    tag: v0.15.0
+    pullPolicy: Always
+
+configurator:
+  repository: docker.redpanda.com/redpandadata/configurator
+  tag: v2.1.11-23.3.1
+  pullPolicy: Always
+
+logLevel: "info"
+
+rbac:
+  create: true
+  createAdditionalControllerCRs: true
+  createRPKBundleCRs: true
+
+serviceAccount:
+  create: true

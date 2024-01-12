@@ -1,0 +1,43 @@
+apiVersion: cluster.redpanda.com/v1alpha1
+kind: Redpanda
+metadata:
+  name: redpanda
+spec:
+  chartRef: {}
+  clusterSpec:
+    image:
+      repository: docker.redpanda.com/redpandadata/redpanda
+      tag: v23.2.22
+      pullPolicy: Always
+    resources:
+      cpu:
+        cores: 1
+      memory:
+        container:
+          min: 2Gi
+          max: 2Gi
+    auth:
+      sasl:
+        enabled: true
+        secretRef: redpanda-superuser
+        users: []
+    tls:
+      enabled: true
+    connectors:
+      enabled: false
+    external:
+      enabled: true
+      domain: customredpandadomain.local
+    rackAwareness:
+      enabled: true
+      nodeAnnotation: topology.kubernetes.io/zone
+    serviceAccount:
+      create: true
+    rbac:
+      enabled: true
+    statefulset:
+      budget:
+        maxUnavailable: 1
+      initContainers:
+        setDataDirOwnership:
+          enabled: true
