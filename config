@@ -5,6 +5,7 @@
 ##       topic.yaml's spec.kafkaApiSpec.brokers
 
 RP_NAMESPACE="rp"
+RP_OPERATOR_VERSION="v2.1.10-23.2.18"
 
 # determine the host architecture for picking the correct RPK binary
 if [ x`uname -m` = "xaarch64" ]; then

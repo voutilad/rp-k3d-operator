@@ -44,7 +44,7 @@ if ! kubectl get service cert-manager -n cert-manager > /dev/null 2>&1; then
 fi
 
 # Install Redpanda CRDs
-kubectl kustomize "https://github.com/redpanda-data/redpanda-operator/src/go/k8s/config/crd" \
+kubectl kustomize "https://github.com/redpanda-data/redpanda-operator/src/go/k8s/config/crd?ref=${RP_OPERATOR_VERSION}" \
 	| kubectl apply -f -
 
 kubectl cluster-info
